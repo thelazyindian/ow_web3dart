@@ -36,7 +36,10 @@ class TransactionData {
     );
   }
 
-  Future<String> sendTransaction(Credentials credentials, [int? chainId]) {
+  Future<String> sendTransaction(
+    Credentials credentials, {
+    int? chainId,
+  }) {
     return client.sendTransaction(
       credentials,
       transaction,

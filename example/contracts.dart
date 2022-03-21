@@ -75,7 +75,8 @@ Future<void> main() async {
 
   // send all our MetaCoins to the other address by calling the sendCoin
   // function
-  await token.sendCoin(receiver, balance, credentials: credentials);
+  final tx = token.sendCoin(receiver, balance);
+  await tx.sendTransaction(credentials);
 
   await subscription.asFuture();
   await subscription.cancel();
