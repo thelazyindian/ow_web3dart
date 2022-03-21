@@ -180,7 +180,7 @@ class _ContractGeneration {
 
   void _methodForFunction(ContractFunction fun, MethodBuilder b, int index) {
     b
-      ..modifier = MethodModifier.async
+      ..modifier = fun.isConstant ? MethodModifier.async : null
       ..returns = _returnType(fun)
       ..name = _nameOfFunction(fun)
       ..body = fun.isConstant
@@ -261,7 +261,7 @@ class _ContractGeneration {
 
   Code _bodyForMutable(ContractFunction function, int index) {
     final params = function.parameters.map((e) => refer(e.name)).toList();
-    final funWrite = refer('getWriteTransaction').call([
+    final funWriteTx = refer('getWriteTransaction').call([
       refer('transaction'),
       refer('function'),
       refer('params'),
@@ -272,7 +272,7 @@ class _ContractGeneration {
 
       b
         ..addExpression(literalList(params).assignFinal('params'))
-        ..addExpression(funWrite.returned);
+        ..addExpression(funWriteTx.returned);
     });
   }
 
