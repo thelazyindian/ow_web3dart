@@ -16,13 +16,12 @@ class Token extends _i1.GeneratedContract {
   /// The optional [transaction] parameter can be used to override parameters
   /// like the gas price, nonce and max gas. The `data` and `to` fields will be
   /// set by the contract.
-  Future<String> sendCoin(_i1.EthereumAddress receiver, BigInt amount,
-      {required _i1.Credentials credentials,
-      _i1.Transaction? transaction}) async {
+  _i1.TransactionData sendCoin(_i1.EthereumAddress receiver, BigInt amount,
+      {_i1.Transaction? transaction}) async {
     final function = self.abi.functions[1];
     assert(checkSignature(function, '90b98a11'));
     final params = [receiver, amount];
-    return write(credentials, transaction, function, params);
+    return getWriteTransaction(transaction, function, params);
   }
 
   /// The optional [atBlock] parameter can be used to view historical data. When

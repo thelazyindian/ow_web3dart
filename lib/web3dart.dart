@@ -33,5 +33,6 @@ export 'src/core/sync_information.dart';
 part 'src/core/client.dart';
 part 'src/core/filters.dart';
 part 'src/core/transaction.dart';
+part 'src/core/transaction_data.dart';
 part 'src/core/transaction_information.dart';
 part 'src/core/transaction_signer.dart';

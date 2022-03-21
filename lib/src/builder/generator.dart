@@ -188,14 +188,6 @@ class _ContractGeneration {
           : _bodyForMutable(fun, index)
       ..requiredParameters.addAll(_parametersFor(fun));
 
-    if (!fun.isConstant) {
-      b.optionalParameters.add(Parameter((b) => b
-        ..type = credentials
-        ..name = 'credentials'
-        ..named = true
-        ..required = true));
-    }
-
     if (fun.isConstant) {
       b.optionalParameters.add(Parameter((b) => b
         ..name = 'atBlock'
@@ -269,8 +261,7 @@ class _ContractGeneration {
 
   Code _bodyForMutable(ContractFunction function, int index) {
     final params = function.parameters.map((e) => refer(e.name)).toList();
-    final funWrite = refer('write').call([
-      argCredentials,
+    final funWrite = refer('getWriteTransaction').call([
       refer('transaction'),
       refer('function'),
       refer('params'),
@@ -407,7 +398,7 @@ class _ContractGeneration {
 
   Reference _returnType(ContractFunction function) {
     if (!function.isConstant) {
-      return futurize(string);
+      return transactionData;
     } else if (function.outputs.isEmpty) {
       return futurize(refer('void'));
     } else if (function.outputs.length > 1) {

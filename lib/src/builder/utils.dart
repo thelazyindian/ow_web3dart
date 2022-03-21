@@ -21,6 +21,7 @@ final listType = listify(dynamicType);
 
 final web3Client = referType('Web3Client', package);
 final ethereumAddress = referType('EthereumAddress', package);
+final transactionData = referType('TransactionData', package);
 final blockNum = referType('BlockNum', package);
 final credentials = referType('Credentials', package);
 final contractAbi = referType('ContractAbi', package);

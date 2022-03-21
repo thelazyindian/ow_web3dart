@@ -42,4 +42,23 @@ abstract class GeneratedContract {
     return client.sendTransaction(credentials, transaction,
         chainId: chainId, fetchChainIdFromNetworkId: chainId == null);
   }
+
+  @protected
+  TransactionData getWriteTransaction(
+      Transaction? base, ContractFunction function, List<dynamic> parameters) {
+    final transaction = base?.copyWith(
+          data: function.encodeCall(parameters),
+          to: self.address,
+        ) ??
+        Transaction.callContract(
+            contract: self, function: function, parameters: parameters);
+
+    return TransactionData(
+      client: client,
+      contract: self,
+      function: function,
+      parameters: parameters,
+      transaction: transaction,
+    );
+  }
 }
