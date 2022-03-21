@@ -169,13 +169,11 @@ class Contract extends _i1.GeneratedContract {
   /// The optional [transaction] parameter can be used to override parameters
   /// like the gas price, nonce and max gas. The `data` and `to` fields will be
   /// set by the contract.
-  Future<String> store(BigInt num,
-      {required _i1.Credentials credentials,
-      _i1.Transaction? transaction}) async {
+  _i1.TransactionData store(BigInt num, {_i1.Transaction? transaction}) {
     final function = self.abi.functions[2];
     assert(checkSignature(function, '6057361d'));
     final params = [num];
-    return write(credentials, transaction, function, params);
+    return getWriteTransaction(transaction, function, params);
   }
 }
 
@@ -415,27 +413,25 @@ class Contract extends _i1.GeneratedContract {
   /// The optional [transaction] parameter can be used to override parameters
   /// like the gas price, nonce and max gas. The `data` and `to` fields will be
   /// set by the contract.
-  Future<String> safeTransferFrom(
+  _i1.TransactionData safeTransferFrom(
       _i1.EthereumAddress _from, _i1.EthereumAddress _to, BigInt _tokenId,
-      {required _i1.Credentials credentials,
-      _i1.Transaction? transaction}) async {
+      {_i1.Transaction? transaction}) {
     final function = self.abi.functions[0];
     assert(checkSignature(function, '42842e0e'));
     final params = [_from, _to, _tokenId];
-    return write(credentials, transaction, function, params);
+    return getWriteTransaction(transaction, function, params);
   }
 
   /// The optional [transaction] parameter can be used to override parameters
   /// like the gas price, nonce and max gas. The `data` and `to` fields will be
   /// set by the contract.
-  Future<String> safeTransferFrom$2(_i1.EthereumAddress _from,
+  _i1.TransactionData safeTransferFrom$2(_i1.EthereumAddress _from,
       _i1.EthereumAddress _to, BigInt _tokenId, _i2.Uint8List data,
-      {required _i1.Credentials credentials,
-      _i1.Transaction? transaction}) async {
+      {_i1.Transaction? transaction}) {
     final function = self.abi.functions[1];
     assert(checkSignature(function, 'b88d4fde'));
     final params = [_from, _to, _tokenId, data];
-    return write(credentials, transaction, function, params);
+    return getWriteTransaction(transaction, function, params);
   }
 }
 ''',

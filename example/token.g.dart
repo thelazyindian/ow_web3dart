@@ -17,7 +17,7 @@ class Token extends _i1.GeneratedContract {
   /// like the gas price, nonce and max gas. The `data` and `to` fields will be
   /// set by the contract.
   _i1.TransactionData sendCoin(_i1.EthereumAddress receiver, BigInt amount,
-      {_i1.Transaction? transaction}) async {
+      {_i1.Transaction? transaction}) {
     final function = self.abi.functions[1];
     assert(checkSignature(function, '90b98a11'));
     final params = [receiver, amount];
